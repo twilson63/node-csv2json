@@ -12,5 +12,10 @@
   "optionalDependencies": {},
   "engines": {
     "node": "*"
+  },
+  "homepage": "https://github.com/twilson63/node-csv2json",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/twilson63/node-csv2json.git"
   }
 }
