@@ -1,0 +1,16 @@
+{
+  "author": "Tom Wilson <tom@jackhq.com>",
+  "name": "csv2json",
+  "description": "Stream CSV to JSON",
+  "version": "0.0.1",
+  "dependencies": {
+    "event-stream": "~1.3.0"
+  },
+  "devDependencies": {
+    "coffee-script": "1.3.3"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
