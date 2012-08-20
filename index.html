@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Node-csv2json : A stream object that reads csv and writes json" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Node-csv2json</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/twilson63/node-csv2json">View on GitHub</a>
+
+          <h1 id="project_title">Node-csv2json</h1>
+          <h2 id="project_tagline">A stream object that reads csv and writes json</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/twilson63/node-csv2json/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/twilson63/node-csv2json/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>csv2json = CSV to JSON Stream Parser</h1>
+
+<p>Stream csv data and convert to json data</p>
+
+<h1>Usage</h1>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">csv2json</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'csv2json'</span><span class="p">),</span>
+  <span class="nx">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'foo'</span><span class="p">,</span><span class="s1">'bar'</span><span class="p">,</span><span class="s1">'baz'</span><span class="p">];</span>
+
+<span class="nx">process</span><span class="p">.</span><span class="nx">openStdin</span><span class="p">().</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">csv2json</span><span class="p">(</span><span class="nx">columns</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="p">));</span>
+</pre></div>
+
+<div class="highlight"><pre><span class="nv">csv2json = </span><span class="nx">require</span> <span class="s">'csv2json'</span>
+<span class="nv">columns = </span><span class="p">[</span><span class="s">'foo'</span><span class="p">,</span><span class="s">'bar'</span><span class="p">,</span><span class="s">'baz'</span><span class="p">]</span>
+
+<span class="nx">process</span><span class="p">.</span><span class="nx">openStdin</span><span class="p">().</span><span class="nx">pipe</span> <span class="nx">csv2json</span><span class="p">(</span><span class="nx">columns</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="p">)</span>
+</pre></div>
+
+<h1>API</h1>
+
+<h2>var csv2json = require('csv2json')</h2>
+
+<hr><h3>parameters</h3>
+
+<ul>
+<li>columns</li>
+</ul><p>Array of column names for each row that will be set as the json keys</p>
+
+<ul>
+<li>columnSeparator (default ',')</li>
+</ul><p>The column separator for your csv file</p>
+
+<ul>
+<li>rowSeparator (default '\n')</li>
+</ul><p>The row separator for you csv file</p>
+
+<h2>var parseRow = require('csv2json').parseRow;</h2>
+
+<hr><ul>
+<li>columns</li>
+</ul><p>Array of column names for each row that will be set as the json keys</p>
+
+<ul>
+<li>columnSeparator (default ',')</li>
+</ul><p>The column separator for your csv file</p>
+
+<p>example</p>
+
+<h1>example.js</h1>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">es</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'event-stream'</span><span class="p">),</span>
+    <span class="nx">parseRow</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'csv2json'</span><span class="p">).</span><span class="nx">parseRow</span><span class="p">;</span>
+
+<span class="nx">es</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+  <span class="nx">es</span><span class="p">.</span><span class="nx">openStdin</span><span class="p">(),</span>
+  <span class="nx">es</span><span class="p">.</span><span class="nx">split</span><span class="p">(),</span>
+  <span class="nx">parseRow</span><span class="p">([</span><span class="s1">'foo'</span><span class="p">,</span><span class="s1">'bar'</span><span class="p">,</span><span class="s1">'baz'</span><span class="p">]),</span>
+  <span class="nx">es</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">','</span><span class="p">),</span>
+  <span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span>
+<span class="p">);</span>
+</pre></div>
+
+<div class="highlight"><pre><span class="nb">echo</span> <span class="s2">"'baz','bar','foo'"</span> | node example.js
+</pre></div>
+
+<h2>License</h2>
+
+<p>MIT</p>
+
+<h2>Contribute</h2>
+
+<p>pull requests are welcome</p>
+
+<h2>Thanks</h2>
+
+<ul>
+<li><a href="https://github.com/dominictarr/event-stream">Event Stream</a></li>
+<li><a href="http://nodejs.org">NodeJs</a></li>
+<li>
+<a href="http://coffeescript.org">CoffeeScript</a> </li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Node-csv2json maintained by <a href="https://github.com/twilson63">twilson63</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
