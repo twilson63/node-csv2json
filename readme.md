@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/twilson63/node-csv2json.png)](http://travis-ci.org/twilson63/node-csv2json)
 # csv2json = CSV to JSON Stream Parser
 
 Stream csv data and convert to json data
