@@ -30,13 +30,13 @@ exports.parseRow = parseRow = function(columns, sep) {
 
 module.exports = csv2json = function(columns, row, col) {
   if (row == null) {
-    row = ',';
+    row = '\n';
   }
   if (col == null) {
-    col = '\n';
+    col = ',';
   }
   if (columns == null) {
     throw new Error('columns must be defined.');
   }
-  return es.pipe(es.split(col), parseRow(columns, row), es.join(','));
+  return es.pipe(es.split(row), parseRow(columns, col), es.join(','));
 };

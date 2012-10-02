@@ -17,11 +17,11 @@ exports.parseRow = parseRow = (columns, sep=',') ->
   
 # main stream to receive a set of csv data and 
 # produce an comma delimited list of json.
-module.exports = csv2json = (columns, row=',', col='\n') ->
+module.exports = csv2json = (columns, row='\n', col=',') ->
   unless columns?
     throw new Error('columns must be defined.')
   es.pipe(
-    es.split(col)
-    parseRow(columns, row)    
+    es.split(row)
+    parseRow(columns, col)
     es.join(',')
   )
